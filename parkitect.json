@@ -22,8 +22,7 @@
       "Unity.TextMeshPro"
     ],
     "assets": [
-        "./packages/Lib.Harmony.*/lib/net35/*.dll",
-        "./packages/PMC.Mod.*/lib/net35/*.dll"
+        "./packages/Lib.Harmony.*/lib/net35/*.dll"
     ],
     "Include": [
     ]
