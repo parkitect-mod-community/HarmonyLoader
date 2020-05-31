@@ -1,6 +1,6 @@
 {
     "name": "HarmonyLoader",
-    "folder": "PMD@HarmonyLoader",
+    "folder": "PMC@HarmonyLoader",
     "version": "v1.0.0",
     "workshop": "",
     "author": "Michael Pollind",
@@ -22,7 +22,8 @@
       "Unity.TextMeshPro"
     ],
     "assets": [
-        "./packages/Lib.Harmony.*/lib/net35/*.dll"
+        "./packages/Lib.Harmony.*/lib/net35/*.dll",
+        "./packages/PMC.Mod.*/lib/net35/*.dll"
     ],
     "Include": [
         "./packages/Lib.Harmony.*/lib/net35/*.dll"

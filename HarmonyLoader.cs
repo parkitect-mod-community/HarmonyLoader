@@ -24,11 +24,14 @@ namespace HarmonyLoader
 
             String harmonyPath = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) +
                          "/packages/Lib.Harmony.2.0.1/lib/net35/0Harmony.dll";
+            String pmcPath = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) +
+                                 "/packages/PMC.Mod.1.0.0/lib/net35/PMC.Mod.dll";
 
             Debug.Log("Assembly path: " + harmonyPath);
-            var asmb = Assembly.LoadFrom(harmonyPath);
-            appDomain.Load(asmb.GetName());
-            Debug.Log("Loaded Harmony");
+            Debug.Log("Assembly path: " + pmcPath);
+            appDomain.Load(Assembly.LoadFrom(harmonyPath).GetName());
+            appDomain.Load(Assembly.LoadFrom(pmcPath).GetName());
+            Debug.Log("Loaded Assembly");
         }
 
         public void onDisabled()
