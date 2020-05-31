@@ -1,0 +1,30 @@
+{
+    "name": "HarmonyLoader",
+    "folder": "PMD@HarmonyLoader",
+    "version": "v1.0.0",
+    "workshop": "",
+    "author": "Michael Pollind",
+    "description": null,
+    "preview": "./preview.png",
+    "assemblies": [
+      "System",
+      "System.Core",
+      "System.Data",
+      "UnityEngine",
+      "UnityEngine.AssetBundleModule",
+      "UnityEngine.CoreModule",
+      "Parkitect",
+      "UnityEngine",
+      "UnityEngine.UI",
+      "UnityEngine.PhysicsModule",
+      "UnityEngine.IMGUIModule",
+      "UnityEngine.TextRenderingModule",
+      "Unity.TextMeshPro"
+    ],
+    "assets": [
+        "./packages/Lib.Harmony.*/lib/net35/*.dll"
+    ],
+    "Include": [
+        "./packages/Lib.Harmony.*/lib/net35/*.dll"
+    ]
+  }
