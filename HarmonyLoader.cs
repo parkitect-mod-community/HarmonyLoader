@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using UnityEngine;
 
@@ -29,9 +31,44 @@ namespace HarmonyLoader
 
             Debug.Log("Assembly path: " + harmonyPath);
             Debug.Log("Assembly path: " + pmcPath);
-            appDomain.Load(Assembly.LoadFrom(harmonyPath).GetName());
-            appDomain.Load(Assembly.LoadFrom(pmcPath).GetName());
+            var asm = Assembly.LoadFrom(harmonyPath);
+            var asm1 = Assembly.LoadFrom(pmcPath);
+            appDomain.Load(asm.GetName());
+            appDomain.Load(asm1.GetName());
             Debug.Log("Loaded Assembly");
+            LoadModPatcher();
+
+        }
+
+        public bool LoadModPatcher()
+        {
+            var appDomain = AppDomain.CurrentDomain;
+            List<string> stringList = new List<string>();
+            stringList.Add(GameController.modsPath);
+            stringList.AddRange((IEnumerable<string>) Directory.GetDirectories(GameController.modsPath));
+            foreach (string path in stringList)
+            {
+                string[] files1 = Directory.GetFiles(path, "*.dll", SearchOption.TopDirectoryOnly);
+                if (files1.Length != 0)
+                {
+                    if (System.IO.Path.GetFileName(files1[0]).Contains("PMC.ModPatcher"))
+                    {
+                        var asm2 = Assembly.LoadFrom(files1[0]);
+                        appDomain.Load(asm2.GetName());
+                        foreach (Type exportedType in asm2.GetExportedTypes())
+                        {
+                            if (!exportedType.IsAbstract && typeof(IMod).IsAssignableFrom(exportedType) &&
+                                Activator.CreateInstance(exportedType) is IMod instance)
+                            {
+                                instance.onEnabled();
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return false;
         }
 
         public void onDisabled()
@@ -40,6 +77,7 @@ namespace HarmonyLoader
 
         public void onEnabled()
         {
+
         }
     }
 }

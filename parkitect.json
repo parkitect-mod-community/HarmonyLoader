@@ -26,6 +26,5 @@
         "./packages/PMC.Mod.*/lib/net35/*.dll"
     ],
     "Include": [
-        "./packages/Lib.Harmony.*/lib/net35/*.dll"
     ]
   }
